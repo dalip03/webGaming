@@ -24,7 +24,7 @@ const SimpleSlider = () => {
 ];
 
   return (
-    <div className="w-full max-w-screen-lg mx-auto px-4 mt-10 pt-11 rounded-2xl">
+    <div className="w-full max-w-screen-lg mx-auto px-2 mt-10 pt-11 rounded-2xl">
     <Slider {...settings} className="rounded-2xl">
       {slideImages.map((url, index) => (
         <div key={index} className="rounded-2xl">
@@ -62,6 +62,5 @@ const PrevArrow = (props) => {
       </svg>
     </div>
   );
-};
-  
+};  
 export default SimpleSlider;

@@ -20,6 +20,8 @@ import { Chip } from "@mui/material";
 
 const pages = ["Find Creators", "Qoutes", "Games"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const advanceSettings = ["My Games", "Wallet", "Notification"];
+
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -43,7 +45,7 @@ function Header() {
       <Container sx={{ backgroundColor: "rgb(0,0,0,.9)" }} maxWidth="xl">
         <Toolbar disableGutters>
           <SpaIcon
-            sx={{ display: { xs: "none", md: "flex", color: "green" }, mr: 1 }}
+            sx={{  mr: 1, color:'green' }}
           />
           <Typography
             variant="h6"
@@ -52,11 +54,10 @@ function Header() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "green",
               textDecoration: "none",
             }}
           >
@@ -97,25 +98,7 @@ function Header() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+       
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -127,7 +110,7 @@ function Header() {
               </Button>
             ))}
           </Box>
-          <Box className="flex items-center gap-2" sx={{ mr: "20px" }}>
+          <Box className="hidden md:flex items-center gap-2 " sx={{ mr: "20px" }}>
             {/* <Button
             size="small"
               sx={{ border: "1px solid green", color: "white" , mr:2}}
@@ -136,6 +119,7 @@ function Header() {
               My Games
             </Button> */}
             <Chip
+
               sx={{ color: "white", border: "1px solid green" }}
               label="My Games"
               variant="outlined"
@@ -198,8 +182,20 @@ function Header() {
                   </Typography>
                 </MenuItem>
               ))}
+              <Box className=' md:hidden'>
+              {advanceSettings.map((aSetting) => (
+                <MenuItem key={aSetting} onClick={handleCloseUserMenu}>
+                  <Typography sx={{ textAlign: "center" }}>
+                    {aSetting}
+                  </Typography>
+                </MenuItem>
+              ))}
+              </Box>
+        
+           
             </Menu>
-          </Box>
+            </Box>
+          
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
-import { Box, Button, Card, CardActions, Chip, Grid } from "@mui/material";
+import { Box, Button, Card, CardActions, Chip, Grid, Menu, MenuItem, useMediaQuery } from "@mui/material";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import LanguageIcon from "@mui/icons-material/Language";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
@@ -70,6 +70,19 @@ function Category() {
         "https://tr.rbxcdn.com/180DAY-f67ef95be1039205aedc967060db3b61/768/432/Image/Webp/noFilter",
     },
   ];
+  const allChips = [
+    "Fortnite", "All Games", "Roblox", "Minecraft", "# Popularity", 
+    "# for women", "# Active Players", "# High rate", "# Hot", 
+    "# FFA", "# RPG", "# Creators love", "Gta", "# Popularity", 
+    "# for women", "# Active Players", "# High rate",
+  ];
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const isMediumScreen = useMediaQuery("(min-width: 768px)");
+  const visibleChips = isMediumScreen ? allChips : allChips.slice(0, 6);
+
+  const handleMoreClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
 
   return (
     <div>
@@ -87,176 +100,35 @@ function Category() {
         </Typography>
       </div>
       <div className="flex flex-wrap gap-1 items-center pl-5 pr-5 pb-5 max-w-full text-white overflow-x-auto">
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="Fortnite"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="All Games"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="Roblox"
-    color="success"
-    icon={
-      <CasinoIcon
-        className="rotate-45"
-        fontSize="small"
-        color="red"
-        sx={{ color: "#BF0000" }}
-      />
-    }
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="Minecraft"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# Popularity"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# for women"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# Active Players"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# High rate"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# Hot"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# FFA"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# RPG"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# Creators love"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="Roblox"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="Gta"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="Fortnite"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="Minecraft"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# Popularity"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# for women"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# Active Players"
-    variant="outlined"
-  />
-  <Chip
-    sx={{
-      color: "white",
-      "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
-    }}
-    label="# High rate"
-    variant="outlined"
-  />
-</div>
+      {visibleChips.map((label, index) => (
+        <Chip
+          key={index}
+          label={label}
+          sx={{
+            color: "white",
+            "&:hover": { cursor: "pointer", backgroundColor: "#B2BEB5" },
+          }}
+          variant="outlined"
+          icon={label === "Roblox" ? <CasinoIcon sx={{ color: "#BF0000" }} /> : null}
+        />
+      ))}
+
+      {/* Show "More" button if on small screen */}
+      {!isMediumScreen && (
+        <>
+          <Button onClick={handleMoreClick} variant="text" sx={{ color: "green", borderColor: "white" , textTransform:'none'}}>
+            More..
+          </Button>
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+            {allChips.slice(4).map((label, index) => (
+              <MenuItem key={index} onClick={handleClose}>
+                <Typography>{label}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
+        </>
+      )}
+    </div>
 
 
       <div className="flex justify-between items-center pl-5 pr-5 md:pr-10 sm:flex-none md:flex-none">
@@ -269,85 +141,60 @@ function Category() {
         <Sortby />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 p-4">
   {Data.map((row, index) => (
-    <Card key={index} sx={{ minWidth: 285 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={row.image}
-        title="green iguana"
-      />
-      <CardContent className="bg-slate-900 text-white">
-        <Box className="pr-3">
-          <Typography gutterBottom variant="h6" component="div">
-            <b>{row.title}</b>
-          </Typography>
-        </Box>
-        <Box className="pr-3">
-          <Box className="flex justify-between">
-            <Box className="flex gap-1 justify-center content-center">
-              <AccountCircleIcon fontSize="small" />
-              <Typography variant="body2" sx={{ color: "gray" }}>
-                {row.subtitle}
-              </Typography>
+    <Card key={index} className="bg-slate-900 text-white rounded-lg overflow-hidden shadow-md">
+          <CardMedia
+            className="h-40 sm:h-52 md:h-56 lg:h-60 w-full object-cover"
+            image={row.image}
+            title={row.title}
+          />
+          <CardContent className="bg-slate-900 text-white">
+            <Typography variant="h6" component="div" className="font-bold text-lg">
+              {row.title}
+            </Typography>
+            <Box className="flex justify-between mt-2 text-sm text-gray-400">
+              <Box className="flex items-center gap-1">
+                <AccountCircleIcon fontSize="small" />
+                <Typography variant="body2">{row.subtitle}</Typography>
+              </Box>
+              <Box className="flex items-center gap-1">
+                <SentimentSatisfiedAltIcon fontSize="small" sx={{ color: "green" }} />
+                <Typography variant="body2" sx={{ color: "green" }}>96%</Typography>
+                <Typography variant="body2" className="text-gray-500">873 Votes</Typography>
+              </Box>
             </Box>
-            <Box className="flex gap-1 justify-center">
-              <SentimentSatisfiedAltIcon
-                sx={{ color: "green" }}
-                fontSize="small"
-              />
-              <Typography
-                style={{ color: "green", ml: 1 }}
-                variant="body2"
-              >
-                96%
-              </Typography>
-              <Typography variant="body2" sx={{ color: "gray" }}>
-                873 Votes
-              </Typography>
-            </Box>
-          </Box>
-          <Box className="flex justify-between pt-5">
-            <Box className="flex justify-between">
-              <Box className="mt:20">
+            <Box className="flex justify-between mt-4">
+              <Box className="flex gap-2 items-center">
                 <SportsEsportsIcon />
+                <Box>
+                  <Typography variant="body2">Online</Typography>
+                  <Typography variant="body2"><b>1,858</b></Typography>
+                </Box>
               </Box>
-              <Box>
-                <Typography>Online</Typography>
-                <Typography>
-                  <b>1,858</b>
-                </Typography>
-              </Box>
-            </Box>
-            <Box className="flex">
-              <Box>
+              <Box className="flex gap-2 items-center">
                 <LanguageIcon />
-              </Box>
-              <Box>
-                <Typography>Visits</Typography>
-                <Typography>
-                  <b>11M</b>
-                </Typography>
+                <Box>
+                  <Typography variant="body2">Visits</Typography>
+                  <Typography variant="body2"><b>11M</b></Typography>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        </Box>
-      </CardContent>
-      <CardActions className="bg-slate-900">
-        <Button
-          fullWidth
-          variant="outlined"
-          className="hover:bg-green-600"
-          sx={{
-            color: "white",
-            transform: "none",
-            border: "1px solid #404040",
-          }}
-        >
-          <b>View Game</b>
-        </Button>
-      </CardActions>
-    </Card>
+          </CardContent>
+          <CardActions className="bg-slate-900">
+            <Button
+              fullWidth
+              variant="outlined"
+              className="hover:bg-green-600"
+              sx={{
+                color: "white",
+                borderColor: "#404040",
+              }}
+            >
+              <b>View Game</b>
+            </Button>
+          </CardActions>
+        </Card>
   ))}
 </div>
 
