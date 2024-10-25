@@ -158,11 +158,46 @@ function Category() {
                 <AccountCircleIcon fontSize="small" />
                 <Typography variant="body2">{row.subtitle}</Typography>
               </Box>
-              <Box className="flex items-center gap-1">
-                <SentimentSatisfiedAltIcon fontSize="small" sx={{ color: "green" }} />
-                <Typography variant="body2" sx={{ color: "green" }}>96%</Typography>
-                <Typography variant="body2" className="text-gray-500">873 Votes</Typography>
-              </Box>
+              <Box
+  className="flex items-center gap-1"
+  sx={{
+    flexDirection: {
+      xs: "column", // stack items vertically on extra small screens
+      sm: "row"     // arrange items in a row on small screens and up
+    },
+    gap: {
+      xs: 0.5, // reduce the gap on smaller screens
+      sm: 1,   // normal gap on larger screens
+    },
+  }}
+>
+  <SentimentSatisfiedAltIcon
+    fontSize="small"
+    sx={{
+      color: "green",
+      marginBottom: { xs: "4px", sm: "0" } // add margin for spacing when stacked
+    }}
+  />
+  <Typography
+    variant="body2"
+    sx={{
+      color: "green",
+      fontSize: { xs: "0.8rem", sm: "1rem" } // smaller font on small screens
+    }}
+  >
+    96%
+  </Typography>
+  <Typography
+    variant="body2"
+    sx={{
+      color: "gray",
+      fontSize: { xs: "0.8rem", sm: "1rem" }
+    }}
+  >
+    873 Votes
+  </Typography>
+</Box>
+
             </Box>
             <Box className="flex justify-between mt-4">
               <Box className="flex gap-2 items-center">
